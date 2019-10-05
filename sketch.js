@@ -149,22 +149,23 @@ function evolve() {
   //}
 
   // selection top 2 or 3
+
+
+
   d1 = dots[0].distance;
   d2 = dots[1].distance;
   d3 = dots[2].distance;
+  d4 = dots[3].distance;
+  d5 = dots[4].distance;
+
+  console.log("Round: " + rnd + ", average distance: " + ((d1+d2+d3+d4+d5)/5));
 
   // crossover
   // averaging x and y of d1 and d2
   avgx = (dots[0].x + dots[1].x + dots[2].x) / 3;
   avgy = (dots[0].y + dots[1].y + dots[2].y) / 3;
 
-  //console.log("avgx: " + avgx + ", avgy: " + avgy);
 
-  // mutation using random in range of -100 to 100, random function upper exclusive
-  /*for (i = 0; i < 5; i++) {
-    nextX[i] = (avgx + random(-mutationVal,mutationVal+1));
-    nextY[i] = (avgy + random(-mutationVal,mutationVal+1));
-  }*/
 
   // smart mutation using the average distance of the 3 top + 25%
   if (smartMutations) {
@@ -269,7 +270,7 @@ function draw() {
 
   roundDisplay = ("Evolutions: " + rnd)
   fill(50);
-  text(roundDisplay, 10, 20); 
+  text(roundDisplay, 10, 20);
 }
 
 
