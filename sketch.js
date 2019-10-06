@@ -135,53 +135,51 @@ function sortNumber(a, b) {
 function evolve() {
   populateDots();
 
+
+  // SELECTION
   for (i = 0; i < 5; i++) {
     dots[i].checkDist();
   }
-
-
   // Sort dots array by distance
   dots.sort((a, b) => (a.distance > b.distance) ? 1 : -1)
 
-  // log distances
-  //for (i = 0; i < 5; i++) {
-  //  console.log(dots[i].distance);
-  //}
-
-  // selection top 2 or 3
-
-
-
+  // Average distance logging
   d1 = dots[0].distance;
   d2 = dots[1].distance;
   d3 = dots[2].distance;
   d4 = dots[3].distance;
   d5 = dots[4].distance;
-
   console.log("Round: " + rnd + ", average distance: " + ((d1+d2+d3+d4+d5)/5));
 
-  // crossover
+  // CROSSOVER
   // averaging x and y of d1 and d2
   avgx = (dots[0].x + dots[1].x + dots[2].x) / 3;
   avgy = (dots[0].y + dots[1].y + dots[2].y) / 3;
 
 
+  // MUTATION
+  smartMutationVal = (d1 + d2 + d3) / 3;
+  smartMutationVal = smartMutationVal * 1.25;
+  for (i = 0; i < 5; i++) {
+    nextX[i] = (avgx + random(-smartMutationVal, smartMutationVal + 1));
+    nextY[i] = (avgy + random(-smartMutationVal, smartMutationVal + 1));
+  }
 
-  // smart mutation using the average distance of the 3 top + 25%
-  if (smartMutations) {
+  /*if (smartMutations) {
+
     smartMutationVal = (d1 + d2 + d3) / 3;
     smartMutationVal = smartMutationVal * 1.25;
     for (i = 0; i < 5; i++) {
       nextX[i] = (avgx + random(-smartMutationVal, smartMutationVal + 1));
       nextY[i] = (avgy + random(-smartMutationVal, smartMutationVal + 1));
     }
+
   } else {
     for (i = 0; i < 5; i++) {
       nextX[i] = (avgx + random(-mutationVal, mutationVal + 1));
       nextY[i] = (avgy + random(-mutationVal, mutationVal + 1));
     }
-  }
-
+  }*/
 
   rnd++;
 }
