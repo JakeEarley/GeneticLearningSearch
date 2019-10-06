@@ -12,7 +12,7 @@ var smartMutations = true;
 
 rnd = 0;
 
-const size = 5;
+const size = 7;
 
 class dot {
   constructor() {
@@ -263,14 +263,15 @@ function checkDist(x, y) {
 }
 
 function draw() {
-  background(175, 255, 170);
+  background(170,170,170);
   setSearchArea();
   drawDots();
   //dot1.draw();
 
   roundDisplay = ("Evolutions: " + rnd)
-  fill(50);
-  text(roundDisplay, 10, 20);
+  fill(255);
+  textSize(20);
+  text(roundDisplay, 10, 30);
 }
 
 
