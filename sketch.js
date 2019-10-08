@@ -137,6 +137,7 @@ function evolve() {
 
 
   // SELECTION
+
   for (i = 0; i < 5; i++) {
     dots[i].checkDist();
   }
@@ -152,12 +153,12 @@ function evolve() {
   console.log("Round: " + rnd + ", average distance: " + ((d1+d2+d3+d4+d5)/5));
 
   // CROSSOVER
-  // averaging x and y of d1 and d2
+  // Takes the average X and Y of the best 3 dots
   avgx = (dots[0].x + dots[1].x + dots[2].x) / 3;
   avgy = (dots[0].y + dots[1].y + dots[2].y) / 3;
 
-
   // MUTATION
+
   smartMutationVal = (d1 + d2 + d3) / 3;
   smartMutationVal = smartMutationVal * 1.25;
   for (i = 0; i < 5; i++) {
@@ -165,21 +166,7 @@ function evolve() {
     nextY[i] = (avgy + random(-smartMutationVal, smartMutationVal + 1));
   }
 
-  /*if (smartMutations) {
 
-    smartMutationVal = (d1 + d2 + d3) / 3;
-    smartMutationVal = smartMutationVal * 1.25;
-    for (i = 0; i < 5; i++) {
-      nextX[i] = (avgx + random(-smartMutationVal, smartMutationVal + 1));
-      nextY[i] = (avgy + random(-smartMutationVal, smartMutationVal + 1));
-    }
-
-  } else {
-    for (i = 0; i < 5; i++) {
-      nextX[i] = (avgx + random(-mutationVal, mutationVal + 1));
-      nextY[i] = (avgy + random(-mutationVal, mutationVal + 1));
-    }
-  }*/
 
   rnd++;
 }
@@ -264,16 +251,9 @@ function draw() {
   background(170,170,170);
   setSearchArea();
   drawDots();
-  //dot1.draw();
 
   roundDisplay = ("Evolutions: " + rnd)
   fill(255);
   textSize(20);
   text(roundDisplay, 10, 30);
 }
-
-
-// fitness function is distance
-// 5 random dots each evolution
-// take averages of 3 best dots plus mutation
-// allow to evolve until all dots are in/near the square
